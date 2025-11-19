@@ -7,7 +7,7 @@ import { Outlet } from 'react-router-dom';
  * @type layout-component
  * @category layout
  */
-export const RootLayout = () => {
+const RootLayout = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Outlet />

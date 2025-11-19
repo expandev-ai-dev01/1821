@@ -7,7 +7,14 @@
  */
 
 import { Router } from 'express';
+import * as stockMovementController from '@/api/v1/internal/stock-movement/controller';
 
 const router = Router();
+
+router.post('/stock-movement', stockMovementController.createHandler);
+router.get('/stock-movement', stockMovementController.listHandler);
+router.get('/stock-movement/balance/:idProduct', stockMovementController.balanceHandler);
+router.post('/stock-movement/reverse', stockMovementController.reverseHandler);
+router.get('/stock-movement/shortage', stockMovementController.shortageHandler);
 
 export default router;

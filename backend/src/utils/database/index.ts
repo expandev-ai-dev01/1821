@@ -21,7 +21,6 @@ const poolConfig: sql.config = {
     encrypt: config.database.options.encrypt,
     trustServerCertificate: config.database.options.trustServerCertificate,
     enableArithAbort: true,
-    defaultSchema: projectSchema,
   },
 };
 
@@ -30,6 +29,9 @@ let pool: sql.ConnectionPool | null = null;
 export async function getPool(): Promise<sql.ConnectionPool> {
   if (!pool) {
     pool = await sql.connect(poolConfig);
+    if (pool.connected) {
+      await pool.request().query(`USE [${config.database.database}]`);
+    }
   }
   return pool;
 }
